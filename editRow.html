@@ -1,0 +1,20 @@
+﻿<table class="noborder">
+    <tr>
+        <td rowspan="2">ID: {{user.id}}<input type="hidden" name="id" value="{{user.id}}"></td>
+        <td>Firstname:</td>
+        <td><input id="firstName" type="text" name="fn" class="w100" value="{{user.firstName}}"></td>
+        <td>LastName:</td>
+        <td><input id="lastName" type="text" name="fn" class="w100" value="{{user.lastName}}"></td>        
+        <td>Age:</td>
+        <td><input id="Age" type="text" name="em" class="w180" value="{{user.Age}}"></td>
+        <td>Created On:</td>
+        <td><input id="Created" type="text" name="em" class="w180" value="{{user.Created}}"></td>
+        <td>Last Edited:</td>
+        <td><input id="lastEdited" type="text" name="em" class="w180" value="{{user.lastEdited}}"></td>
+        <td>Email:</td>
+        <td><input id="Email" type="text" name="em" class="w180" value="{{user.Email}}"></td>
+        <td>Active:</td>
+        <td><input id="Active" type="text" name="em" class="w180" value="{{user.Active}}"></td>
+        <td><input type="button" value=" save " ng-click="edit(user);" /></td>   
+    </tr>    
+</table>

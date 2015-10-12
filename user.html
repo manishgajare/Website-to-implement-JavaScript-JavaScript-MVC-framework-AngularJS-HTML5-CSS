@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+<!--Stylesheets can be loaded on top-->
+<link data-require="bootstrap-css@*" data-semver="3.0.0"
+    rel="stylesheet"
+    href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+<link data-require="ng-table@*" data-semver="0.3.1" rel="stylesheet"
+        href="http://bazalt-cms.com/assets/ng-table/0.3.1/ng-table.css" />
+</head>
+
+<body ng-app="DeveloperApp" style="width: 1280px;">
+
+    <h1 style="text-align: center">USER LIST</h1>
+    <br />
+
+    <div class="container" ng-controller="DeveloperController">
+        <table> <!--//Table For adding User-->
+            <thead>
+                <tr>
+                    <th><input id="addFirstName" ng-model="newDeveloper.firstName"
+                        class="form-control" /></th>
+                    <th><input id="addLastName" ng-model="newDeveloper.lastName"
+                        class="form-control" /></th>
+                    <th><input id="addAge" ng-model="newDeveloper.Age" class="form-control" />
+                    </th>
+                    <th><input id="addEmail" ng-model="newDeveloper.Email" class="form-control"/>
+                    </th>
+                    <th><input id="addCreated" ng-model="newDeveloper.Created"
+                        class="form-control" /></th>
+                    <th><input id="addLastEdited" ng-model="newDeveloper.lastEdited"
+                        class="form-control" /></th>
+                    <th><input id="addActive" ng-model="newDeveloper.Active" class="form-control" />
+                    </th>
+                    <th>
+                        <button class="btn btn-success pull-right"
+                            ng-click="addUser(newDeveloper);">ADD USER</button>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+
+        <!--Populate Table Using Json Data-->
+        <table ng-table="tableParams" show-filter="true" class="table">
+            <tbody ng-repeat="user in $data track by $index">
+                <tr id="tr{{user.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                    <td data-title="'First Name*'" sortable="'firstName'"
+                        filter="{ 'firstName': 'text' }">{{user.firstName}}</td>
+                    <td data-title="'Last Name*'" sortable="'lastName'"
+                        filter="{ 'lastName': 'text' }">{{user.lastName}}</td>
+                    <td data-title="'Age'" sortable="'Age'" filter="{ 'Age': 'text' }">
+                        {{user.Age}}</td>
+                    <td data-title="'Email*'" sortable="'Email'"
+                        filter="{ 'Email': 'text' }">{{user.Email}}</td>
+                    <td data-title="'Created'" sortable="'Created'"
+                        filter="{ 'Created': 'text' }">{{user.Created}}</td>
+                    <td data-title="'LastEdited'" sortable="'lastEdited'"
+                        filter="{ 'lastEdited': 'text' }">{{user.lastEdited}}</td>
+                    <td data-title="'Active'"><span
+                        ng-show="user.Active == 'true'" class="glyphicon glyphicon-ok">
+                    </span></td>
+                    <td class="rowTd">
+                        <button class="btn btn-warning pull-right"
+                            id="editRowBtn{{user.id}}" ng-click="setEditId(user.id)">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger pull-right"
+                            ng-click="setDelId(user.id)">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </td>
+                </tr>
+                <tr id="EditRow" ng-show="editId===user.id" ng-if="editId===user.id">
+                    <td colspan="7" ng-include src="'editRow.html'"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--load all scripts at the bottom-->
+    <script data-require="angular.js@*" data-semver="1.2.0-rc3-nonmin"
+        src="http://code.angularjs.org/1.2.0-rc.3/angular.js"></script>
+    <script data-require="ng-table@*" data-semver="0.3.1"
+        src="http://bazalt-cms.com/assets/ng-table/0.3.1/ng-table.js"></script>
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/qunit-1.12.0.js"></script>
+    <script src="controller/script.js"></script>
+    
+</body>
+</html>
+
